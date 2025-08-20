@@ -1,0 +1,20 @@
+<?php
+
+echo "Welcome to PHP\n";
+
+echo $name = "Alice";
+echo "\n" . $name . "\n";
+
+echo "Hello, " . $name . "!\n";
+
+$pizzas = 3;
+$slicesPerPizza = 8;
+$totalSlices = $pizzas * $slicesPerPizza;
+
+echo "Total pizza slices: " . $totalSlices . "\n";
+
+$isHungry = true;
+
+echo "Hungry? ";
+echo $isHungry ? "Yes" : "No ";
+echo "\n";
