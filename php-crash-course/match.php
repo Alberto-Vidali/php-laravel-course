@@ -10,5 +10,4 @@ $message = match($status) {
     default => "Unknown status"
 };
 
-
 echo $message . "\n";
