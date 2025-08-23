@@ -9,7 +9,7 @@ $squared = array_map(function ($n) use ($multiplier) {
 
 var_dump($numbers, $squared);
 
-// Niente parentesi graffe, si mette subito il valore da ritornare, possono accedere allo scope del genitore.ddddd
+// Niente parentesi graffe, si mette subito il valore da ritornare, possono accedere allo scope del genitore.
 $squared = array_map(fn ($n) => $n * $multiplier, $numbers);
 
 var_dump($numbers, $squared);
