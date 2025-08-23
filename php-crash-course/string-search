@@ -1,0 +1,13 @@
+<?php
+
+$haystack = "The quick brown fox";
+// Dove comincia il testo che sto cercando?
+$pos = strpos($haystack, "quick");
+var_dump($pos);
+
+var_dump(str_replace("quick", "lazy", $haystack));
+
+// Matcha qualsiasi sequenza di 5 caratteri qualsiasi: quindi sia quick che brown matchano
+// Non c'è bisogno di dichiarare la variabile $matches
+preg_match_all('/\w{5}/', $haystack, $matches);
+var_dump($matches);
