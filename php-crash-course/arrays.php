@@ -60,3 +60,46 @@ var_dump($moreNumbers);
 // sembra incoerente con l'assegnamento)
 [$first, $second] = $fruits;
 var_dump($first, $second);
+
+// Chiavi e valori
+$keys = array_keys($associativeArray);
+$values = array_values($associativeArray);
+
+var_dump($keys, $values);
+
+var_dump(
+    array_key_exists("name", $associativeArray),
+    in_array("John", $associativeArray)
+);
+
+$fruitString = implode(", ", $fruits);
+$backToArray = explode(", ", $fruitString);
+
+var_dump($backToArray);
+
+$set1 = [1,2,3,4,5];
+$set2 = [3,4,5,6,7];
+
+echo "Post set var dump \n";
+
+var_dump(
+    // Rimuove gli elementi doppi
+    array_unique(array_merge($set1, $set2)),
+    array_slice($set1, 1, 4),
+    // Fonde due array
+    array_merge($set1, $set2),
+    // Se in array associativi ci sono più chiavi uguali, quelle del secondo argomento sovrascrivono quelle del primo
+    array_merge($associativeArray, ["country" => "Germany"]),
+    // + effettua l'unione (elementi uguali negli insiemi)
+    $set1 + $set2,
+    $associativeArray + ["country" => "Germany"],
+    [...$set1, ...$set2],
+    // Lo spread fa si che si fondano gli array associativi. Quindi le chiavi uguali del primo array vengono
+    // sostituite con quelle del secondo.
+    [...$associativeArray, ...["country" => "Germany"]]
+);
+
+var_dump(
+    // Banana è nel numero di indice n (1)
+    array_search("banana", $fruits)
+);
