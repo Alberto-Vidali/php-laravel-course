@@ -1,16 +1,20 @@
 <?php
 
+// La composizione è quando una classe ne contiene un altra per ottenere le funzionalità di cui ha bisogno,
+// invece di ereditare da una classe base.
+
 // Una classe può avere una sola classe figlia ma implementare quante interfacce vuole.
 interface PaymentProcessor {
-    public function processPayment(float $amount): bool;
-    public function refundPayment(float $amount): bool;
+    public function processPayment(float | int $amount): bool;
+    public function refundPayment(float | int $amount): bool;
 }
 
 // Le classi astratte se non implementassero i metodi dell'interfaccia possono ma in realtà li hanno
 // comunque, e sono considerati astratti, e quindi li dovrebbero implementare le classi figlie.
 abstract class OnlinePaymentProcessor implements PaymentProcessor {
     // protected significa che può essere acceduto nella classe base e nelle sottoclassi
-    public function __construct(protected string $apiKey) {
+    // readonly indica che la proprietà una volta inizializzata non può più essere modificata.
+    public function __construct(protected readonly string $apiKey) {
         
     }
 
@@ -19,14 +23,14 @@ abstract class OnlinePaymentProcessor implements PaymentProcessor {
     abstract protected function executePayment(float $amount): bool;
     abstract protected function executeRefund(float $amount): bool;
 
-    public function processPayment(float $amount): bool {
+    public function processPayment(float | int $amount): bool {
         if (!$this->validateApiKey()) {
             throw new Exception("Invalid API key");
         }
         return $this->executePayment($amount);
     }
 
-    public function refundPayment(float $amount) : bool {
+    public function refundPayment(float | int $amount) : bool {
         if (!$this->validateApiKey()) {
             throw new Exception("Invalid API key");
         }
@@ -35,7 +39,8 @@ abstract class OnlinePaymentProcessor implements PaymentProcessor {
 }
 
 // Ereditano anche l'interfaccia PaymentProcessor
-class StripeProcessor extends OnlinePaymentProcessor {
+// Final significa che non si può più estendere ulteriormente
+final class StripeProcessor extends OnlinePaymentProcessor {
     protected function validateApiKey(): bool {
         return strpos($this->apiKey, "sk_") === 0;
     }
@@ -51,7 +56,7 @@ class StripeProcessor extends OnlinePaymentProcessor {
     }
 }
 
-class PayPalProcessor extends OnlinePaymentProcessor {
+final class PayPalProcessor extends OnlinePaymentProcessor {
     protected function validateApiKey(): bool {
         return strpos($this->apiKey, "sk_") === 32;
     }
@@ -68,11 +73,11 @@ class PayPalProcessor extends OnlinePaymentProcessor {
 }
 
 class CashPaymentProcessor implements PaymentProcessor {
-    public function processPayment(float $amount): bool {
+    public function processPayment(float | int $amount): bool {
         echo "Cash payment ...";
         return true;
     }
-    public function refundPayment(float $amount): bool {
+    public function refundPayment(float | int $amount): bool {
         echo "Cash refund ...";
         return true;
     }
