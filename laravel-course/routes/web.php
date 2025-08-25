@@ -3,39 +3,25 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
-    $person = [
-        "name" => "Zura",
-        "email" => "zura@example.com",
-    ];
-    // Simile a dump_var ma nel framework laravel Utile per debug.
-    // dump($person);
-    // Stampa a video la variabile e interrompe l'esecuzione del codice.
-    // dd($person);
     return view("welcome");
 });
 
-Route::view("/about", "about");
+Route::view("/about-us", "about")->name("about");
 
-Route::get("/product/{id}", function(string $id) {
-    return "Product ID=$id";
-})->whereNumber("id");
-
-Route::get("/product/category/{category?}", function(string $category = "category") {
-    return "Product for category = $category";
+// Definisce tutte le route con prefisso "admin"
+Route::prefix("admin")->group(function() {
+    // Matcha quindi admin/users perchè è la route che definisco all'interno di users
+    Route::get("users", function() {
+        return "/admin/users";
+    });
 });
 
-Route::get("/user/{username}", function (string $username) {
+// Matcha tutte le route che non vengono matchate da altro (dove altrimenti Laravel mostrerebbe una 404)
+Route::fallback(function() {
+    return "fallback";
+});
 
-})->where("username", "[a-z]+");
-
-Route::get("{lang}/product/{id}", function(string $lang, string $id) {
-    return "$lang, $id";
-    // Lingua solo caratteri minuscoli esattamente 2, id di almeno 4 numeri
-})->where(["lang" => '[a-z]{2}', "id" => '\d{4,}']);
-
-Route::get("search/{search}", function(string $search) {
-    return "$search";
-    // In questo esempio sono quindi ammesse anche route come search/18/7 perché é interpretato letteralmente come 18/7
-})->where("search", '.+');
-
-Route::view('/about', 'about');
+// Route che accetta due parametri che devono essere due numeri e ne restituisce la somma
+Route::get("/{firstNumber}/{secondNumber}", function (int $firstNumber, int $secondNumber) {
+    return $firstNumber + $secondNumber;
+})->whereNumber(["firstNumber", "secondNumber"]);
