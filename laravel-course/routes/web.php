@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ShowCarController;
 
 Route::get('/', function() {
     return view("welcome");
@@ -25,3 +27,10 @@ Route::fallback(function() {
 Route::get("/{firstNumber}/{secondNumber}", function (int $firstNumber, int $secondNumber) {
     return $firstNumber + $secondNumber;
 })->whereNumber(["firstNumber", "secondNumber"]);
+
+/* Route::controller(CarController::class)->group(function() {
+    Route::get("/car", "index");
+    Route::get("/my-cars", "MyCars");
+}); */
+
+Route::get("/car", ShowCarController::class);
