@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShowCarController;
 
 Route::get('/', function() {
@@ -10,27 +11,8 @@ Route::get('/', function() {
 
 Route::view("/about-us", "about")->name("about");
 
-// Definisce tutte le route con prefisso "admin"
-Route::prefix("admin")->group(function() {
-    // Matcha quindi admin/users perchè è la route che definisco all'interno di users
-    Route::get("users", function() {
-        return "/admin/users";
-    });
-});
-
-// Matcha tutte le route che non vengono matchate da altro (dove altrimenti Laravel mostrerebbe una 404)
-Route::fallback(function() {
-    return "fallback";
-});
-
-// Route che accetta due parametri che devono essere due numeri e ne restituisce la somma
-Route::get("/{firstNumber}/{secondNumber}", function (int $firstNumber, int $secondNumber) {
-    return $firstNumber + $secondNumber;
-})->whereNumber(["firstNumber", "secondNumber"]);
-
-/* Route::controller(CarController::class)->group(function() {
-    Route::get("/car", "index");
-    Route::get("/my-cars", "MyCars");
-}); */
-
-Route::get("/car", ShowCarController::class);
+// Risorse solo per le API (niente create e edit, ma gli altri si)
+Route::apiResources([
+    "cars" => CarController::class,
+    "products" => ProductController::class
+]);
