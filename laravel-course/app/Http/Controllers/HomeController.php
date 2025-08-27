@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-
 class HomeController extends Controller
 {
-    public function index() {
+    public function index2() {
         // Passaggio dati alle View
-        return View("home.index", [
+        return view("home.index", [
             "name" => "Alberto",
-            "surname" => "Vidali"
+            "surname" => "Vidali",
+            "job" => "<b>Developer</b>"
         ]);
     }
 
-    public function index2() {
+    public function index() {
         // Modo alternativo
         return view("home.index")
             ->with("name","Alberto")
-            ->with("surname", "Vidali");
+            ->with("surname", "Vidali")
+            ->with("job", "<b>developer</b>")
+            ->with("hobbies", ["tennis", "fishing"]);
     }
 }
