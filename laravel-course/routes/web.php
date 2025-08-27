@@ -1,9 +1,7 @@
 <?php
 
+use App\Http\Controllers\mathController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CarController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ShowCarController;
 
 Route::get('/', function() {
     return view("welcome");
@@ -11,8 +9,8 @@ Route::get('/', function() {
 
 Route::view("/about-us", "about")->name("about");
 
-// Risorse solo per le API (niente create e edit, ma gli altri si)
-Route::apiResources([
-    "cars" => CarController::class,
-    "products" => ProductController::class
-]);
+
+Route::controller(mathController::class)->group(function () {
+    Route::get("/subtract/{first}/{second}", "subtract")->whereNumber(["first", "second"]);
+    Route::get("/sum/{first}/{second}", "sum");
+});
