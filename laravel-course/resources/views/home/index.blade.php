@@ -1,21 +1,15 @@
 <h1>Hello from Laravel!</h1>
 
-<!--
-    Text
--->
+{{-- <h2 @class([
+        "my-css-class",
+        "italy" => $country == "it"
+    ])
 
-{{-- Single line comment --}}
+    @style([
+        "color: blue",
+        "background-color: lightgreen" => $country === "it"
+    ])
+    >
+    Lorem ipsum
+</h2> --}}
 
-{{-- 
-    Multi line
-    comment
---}}
-
-@if (true)
-    This will be displayed
-@endif
-
-@foreach ($hobbies as $h)
-    {{ dd($loop) }}
-    {{ $h }}
-@endforeach
