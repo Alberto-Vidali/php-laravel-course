@@ -1,15 +1,7 @@
-<h1>Hello from Laravel!</h1>
+@extends("layouts.app")
 
-{{-- <h2 @class([
-        "my-css-class",
-        "italy" => $country == "it"
-    ])
+@section("title", "Home Page")
 
-    @style([
-        "color: blue",
-        "background-color: lightgreen" => $country === "it"
-    ])
-    >
-    Lorem ipsum
-</h2> --}}
-
+@section("content")
+    <h1>Content</h1>
+@endsection
