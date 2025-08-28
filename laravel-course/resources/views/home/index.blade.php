@@ -1,20 +1,21 @@
-<script>
-    const hobbies = {{ Js::from($hobbies) }}
-</script>
+<h1>Hello from Laravel!</h1>
 
-<p>My Name is {{ $name }} {{ $surname }}</p>
-<p>The year is {{ $year }}</p>
-<p>{{ strtoupper("$name $surname") }}</p>
-<p>{!! $job !!}</p>
+<!--
+    Text
+-->
 
+{{-- Single line comment --}}
 
-@{{ name }}
-@@for
+{{-- 
+    Multi line
+    comment
+--}}
 
-@verbatim
-    <div>
-        Name: {{ name }}
-        Age: {{ age }}
-        @if
-    </div>
-@endverbatim
+@if (true)
+    This will be displayed
+@endif
+
+@foreach ($hobbies as $h)
+    {{ dd($loop) }}
+    {{ $h }}
+@endforeach
