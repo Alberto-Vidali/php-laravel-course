@@ -92,7 +92,7 @@
     </section>
     <!--/ Home Slider -->
 
-        <main>
+    <main>
       <!-- Find a car form -->
       <section class="find-a-car">
         <div class="container">
