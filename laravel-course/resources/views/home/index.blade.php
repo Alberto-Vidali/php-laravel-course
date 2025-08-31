@@ -1008,5 +1008,7 @@
       </section>
       <!--/ New Cars -->
     </main>
-    
+    @section("footerLinks")
+      <a href="#">Link 1</a>
+    @endsection
 @endsection
