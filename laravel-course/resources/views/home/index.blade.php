@@ -3,7 +3,12 @@
 @section("title", "Home Page")
 
 @section("content")
-  <x-card>
+  @php
+    $color = "red";
+    $bgColor = "blue"
+  @endphp
+  {{-- :$color :bgColor la versione shorthand --}}
+  <x-card :color="$color" :bgColor="$bgColor">
     <x-slot:title>Card title 1</x-slot:title>
     Card Content 1
     <x-slot:footer>Card footer 1</x-slot:footer>
@@ -99,7 +104,7 @@
 
   <main>
     <!-- Find a car form -->
-    <x-search-form/>
+    <x-search-form action="/search" method="POST"/>
     <!--/ Find a car form -->
 
     <!-- New Cars -->
