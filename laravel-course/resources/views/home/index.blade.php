@@ -8,7 +8,7 @@
     $bgColor = "blue"
   @endphp
   {{-- :$color :bgColor la versione shorthand --}}
-  <x-card :color="$color" :bgColor="$bgColor">
+  <x-card class="card-rounded" :color="$color" :bgColor="$bgColor" lang="en">
     <x-slot:title>Card title 1</x-slot:title>
     Card Content 1
     <x-slot:footer>Card footer 1</x-slot:footer>
