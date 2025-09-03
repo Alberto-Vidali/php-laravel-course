@@ -1,21 +1,4 @@
-@extends("layouts.app")
-
-@section("title", "Home Page")
-
-@section("content")
-  @php
-    $color = "red";
-    $bgColor = "blue"
-  @endphp
-  {{-- :$color :bgColor la versione shorthand --}}
-  <x-card class="card-rounded" :color="$color" :bgColor="$bgColor" lang="en">
-    <x-slot:title>Card title 1</x-slot:title>
-    Card Content 1
-    <x-slot:footer>Card footer 1</x-slot:footer>
-  </x-card>
-  <x-test-component class="card" name="hello moto">
-    aaaaa
-  </x-test-component>
+<x-app-layout>  
   <!-- Home Slider -->
   <section class="hero-slider">
     <!-- Carousel wrapper -->
@@ -103,8 +86,7 @@
       </button>
     </div>
   </section>
-  <!--/ Home Slider -->
-
+<!--/ Home Slider -->
   <main>
     <!-- Find a car form -->
     <x-search-form action="/search" method="POST"/>
@@ -676,6 +658,8 @@
     <!--/ New Cars -->
   </main>
   @section("footerLinks")
-    <a href="#">Link 1</a>
+    @parent
+    <a href="#">Link 3</a>
+    <a href="#">Link 4</a>
   @endsection
-@endsection
+</x-app-layout>
