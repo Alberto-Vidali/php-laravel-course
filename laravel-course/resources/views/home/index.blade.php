@@ -13,6 +13,9 @@
     Card Content 1
     <x-slot:footer>Card footer 1</x-slot:footer>
   </x-card>
+  <x-test-component class="card" name="hello moto">
+    aaaaa
+  </x-test-component>
   <!-- Home Slider -->
   <section class="hero-slider">
     <!-- Carousel wrapper -->
